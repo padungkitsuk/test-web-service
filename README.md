@@ -13,10 +13,10 @@ SOAP server จำลองของ `TipMobileWS/Service1.svc` (non-motor) ข�
 ## วิธีใช้
 
 1. ดับเบิลคลิก `start-mock.bat` แล้วเปิดหน้าต่างทิ้งไว้ (ปิดหน้าต่างคือหยุด server)
-   - ตรวจว่าทำงาน: เปิด http://127.0.0.1:8089/ ต้องเห็นรายชื่อ operation
+   - ตรวจว่าทำงาน: เปิด http://127.0.0.1:8888/ ต้องเห็นรายชื่อ operation
 2. ใน TipFlashClaim ไฟล์ `config/.env` ตั้งค่าไว้แล้ว:
    ```
-   DHIPAYA_NONMOTOR_REQUEST_URL="http://127.0.0.1:8089/TipMobileWS/Service1.svc?wsdl"
+   DHIPAYA_NONMOTOR_REQUEST_URL="http://127.0.0.1:8888/TipMobileWS/Service1.svc?wsdl"
    ```
 3. **Restart Apache ใน Laragon** (Stop → Start)
    เพราะ `.env` ถูกโหลดเข้า environment ของ process Apache ไปแล้ว (`putenv`) แก้ไฟล์อย่างเดียวจะไม่มีผล
@@ -84,7 +84,7 @@ D:\laragon\bin\php\php-8.0.9-Win32-vs16-x64\php.exe tests\smoke-test.php
 
 ## โครงสร้างไฟล์
 ```
-start-mock.bat               เริ่ม server (php -S 127.0.0.1:8089)
+start-mock.bat               เริ่ม server (php -S 127.0.0.1:8888)
 router.php                   รับ request: GET ?wsdl / POST SOAP / หน้า status
 src/MockService1.php         logic ของแต่ละ operation
 wsdl/TipMobileWS-Service1.wsdl

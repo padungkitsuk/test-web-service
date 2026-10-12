@@ -10,7 +10,7 @@
  * Created: 2026-10-12.
  */
 
-$wsdl = $argv[1] ?? 'http://127.0.0.1:8089/TipMobileWS/Service1.svc?wsdl';
+$wsdl = $argv[1] ?? 'http://127.0.0.1:8888/TipMobileWS/Service1.svc?wsdl';
 
 function client(string $wsdl): SoapClient
 {

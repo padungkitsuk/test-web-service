@@ -3,7 +3,7 @@ REM Starts the TIP mock SOAP server (PHP built-in web server). Created: 2026-10-
 REM Close this window (or press Ctrl+C) to stop it.
 setlocal
 
-set PORT=8089
+set PORT=8888
 set PHP_BIN=D:\laragon\bin\php\php-8.0.9-Win32-vs16-x64\php.exe
 if not exist "%PHP_BIN%" set PHP_BIN=php
 
