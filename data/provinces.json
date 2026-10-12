@@ -1,0 +1,11 @@
+[
+    { "ProvinceId": "10", "ProvinceName": "กรุงเทพมหานคร" },
+    { "ProvinceId": "11", "ProvinceName": "สมุทรปราการ" },
+    { "ProvinceId": "12", "ProvinceName": "นนทบุรี" },
+    { "ProvinceId": "13", "ProvinceName": "ปทุมธานี" },
+    { "ProvinceId": "20", "ProvinceName": "ชลบุรี" },
+    { "ProvinceId": "40", "ProvinceName": "ขอนแก่น" },
+    { "ProvinceId": "50", "ProvinceName": "เชียงใหม่" },
+    { "ProvinceId": "83", "ProvinceName": "ภูเก็ต" },
+    { "ProvinceId": "90", "ProvinceName": "สงขลา" }
+]

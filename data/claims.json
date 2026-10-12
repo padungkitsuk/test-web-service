@@ -1,0 +1,16 @@
+{
+    "_comment": "GetClaimNonMotor: 'status' maps ClaimNo -> Status (the app reacts to 'Approve' and 'ติดต่อเจ้าหน้าที่ 02-239-2200'); anything else gets default_status, which the app ignores. GetClaimOTPDetail: 'otp' maps ClaimNo -> OTP detail; claims not listed get ResultCode 01. Created: 2026-10-12.",
+    "default_status": "MOCK: อยู่ระหว่างพิจารณา",
+    "status": {
+        "MOCK-CLAIM-APPROVE": "Approve",
+        "MOCK-CLAIM-REJECT": "ติดต่อเจ้าหน้าที่ 02-239-2200"
+    },
+    "otp": {
+        "MOCK-CLAIM-OTP": {
+            "MobileNo": "0800000001",
+            "OTP": "123456",
+            "ExpireDate": "2026-12-31T23:59:59",
+            "Message": "MOCK: รหัส OTP สำหรับรับเงินค่าสินไหมคือ 123456"
+        }
+    }
+}

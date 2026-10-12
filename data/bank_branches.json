@@ -1,0 +1,10 @@
+{
+    "_comment": "Keyed by BankCode. Banks without their own entry get the 'default' list. Created: 2026-10-12.",
+    "default": [
+        { "BankBranchCode": "0001", "T_Name": "สำนักงานใหญ่", "E_Name": "Head Office" },
+        { "BankBranchCode": "0010", "T_Name": "สาขาสีลม", "E_Name": "Silom" },
+        { "BankBranchCode": "0020", "T_Name": "สาขาราชดำริ", "E_Name": "Ratchadamri" },
+        { "BankBranchCode": "0030", "T_Name": "สาขาบางนา", "E_Name": "Bang Na" },
+        { "BankBranchCode": "0040", "T_Name": "สาขาเซ็นทรัล ลาดพร้าว", "E_Name": "Central Ladprao" }
+    ]
+}

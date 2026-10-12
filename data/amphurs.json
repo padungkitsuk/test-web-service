@@ -1,0 +1,16 @@
+{
+    "_comment": "Keyed by ProvinceId. Provinces without an entry get 3 generated 'อำเภอทดสอบ N' rows. Created: 2026-10-12.",
+    "10": [
+        { "AmphurId": "1001", "AmphurName": "พระนคร" },
+        { "AmphurId": "1004", "AmphurName": "บางรัก" },
+        { "AmphurId": "1007", "AmphurName": "ปทุมวัน" },
+        { "AmphurId": "1029", "AmphurName": "บางซื่อ" },
+        { "AmphurId": "1030", "AmphurName": "จตุจักร" },
+        { "AmphurId": "1047", "AmphurName": "บางนา" }
+    ],
+    "12": [
+        { "AmphurId": "1201", "AmphurName": "เมืองนนทบุรี" },
+        { "AmphurId": "1202", "AmphurName": "บางกรวย" },
+        { "AmphurId": "1206", "AmphurName": "ปากเกร็ด" }
+    ]
+}

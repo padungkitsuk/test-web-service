@@ -1,0 +1,18 @@
+{
+    "_comment": "Keyed by AmphurId. Amphurs without an entry get 3 generated 'ตำบลทดสอบ N' rows (zip 10000). Created: 2026-10-12.",
+    "1004": [
+        { "DistrictId": "100401", "DistrictName": "มหาพฤฒาราม", "DistrictZipCode": "10500" },
+        { "DistrictId": "100402", "DistrictName": "สีลม", "DistrictZipCode": "10500" },
+        { "DistrictId": "100403", "DistrictName": "สุริยวงศ์", "DistrictZipCode": "10500" }
+    ],
+    "1030": [
+        { "DistrictId": "103001", "DistrictName": "ลาดยาว", "DistrictZipCode": "10900" },
+        { "DistrictId": "103002", "DistrictName": "เสนานิคม", "DistrictZipCode": "10900" },
+        { "DistrictId": "103003", "DistrictName": "จันทรเกษม", "DistrictZipCode": "10900" }
+    ],
+    "1201": [
+        { "DistrictId": "120101", "DistrictName": "สวนใหญ่", "DistrictZipCode": "11000" },
+        { "DistrictId": "120102", "DistrictName": "ตลาดขวัญ", "DistrictZipCode": "11000" },
+        { "DistrictId": "120103", "DistrictName": "บางเขน", "DistrictZipCode": "11000" }
+    ]
+}

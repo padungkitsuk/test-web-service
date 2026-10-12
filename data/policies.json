@@ -1,0 +1,32 @@
+[
+    {
+        "PolicyNo": "MOCK-PA-000001",
+        "InsuranceClass": "PA",
+        "SubClass": "PA",
+        "SubclassName": "ประกันภัยอุบัติเหตุส่วนบุคคล (MOCK)",
+        "TitleName": "นาย",
+        "Firstname": "ทดสอบ",
+        "LastName": "สุขภาพ",
+        "IDCardNo": "1100100100001",
+        "PersonNo": "P000001",
+        "TelNo": "0800000001"
+    },
+    {
+        "PolicyNo": "MOCK-FR-000001",
+        "InsuranceClass": "FI",
+        "SubClass": "FR",
+        "SubclassName": "ประกันอัคคีภัยสำหรับที่อยู่อาศัย (MOCK)",
+        "TitleName": "นาง",
+        "Firstname": "ทดสอบ",
+        "LastName": "ทรัพย์สิน",
+        "IDCardNo": "1100100100002",
+        "PersonNo": "P000002",
+        "TelNo": "0800000002",
+        "AddressNo": "99/9",
+        "LocationAddress": "99/9 หมู่บ้านทดสอบ ถนนทดสอบ ตำบลบางเขน อำเภอเมืองนนทบุรี นนทบุรี 11000",
+        "CoverageList": [
+            { "AgreementNo": "1", "AgreementBrcode": "000", "T_Coverage": "ไฟไหม้ ฟ้าผ่า ระเบิด (MOCK)", "E_Coverage": "Fire, lightning, explosion (MOCK)", "Suminsured": "1,000,000.00" },
+            { "AgreementNo": "2", "AgreementBrcode": "000", "T_Coverage": "ภัยธรรมชาติ (MOCK)", "E_Coverage": "Natural disasters (MOCK)", "Suminsured": "100,000.00" }
+        ]
+    }
+]

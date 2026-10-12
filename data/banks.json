@@ -1,0 +1,16 @@
+[
+    { "BankCode": "002", "T_Name": "ธนาคารกรุงเทพ", "E_Name": "Bangkok Bank" },
+    { "BankCode": "004", "T_Name": "ธนาคารกสิกรไทย", "E_Name": "Kasikornbank" },
+    { "BankCode": "006", "T_Name": "ธนาคารกรุงไทย", "E_Name": "Krungthai Bank" },
+    { "BankCode": "011", "T_Name": "ธนาคารทหารไทยธนชาต", "E_Name": "TMBThanachart Bank" },
+    { "BankCode": "014", "T_Name": "ธนาคารไทยพาณิชย์", "E_Name": "Siam Commercial Bank" },
+    { "BankCode": "022", "T_Name": "ธนาคารซีไอเอ็มบี ไทย", "E_Name": "CIMB Thai Bank" },
+    { "BankCode": "024", "T_Name": "ธนาคารยูโอบี", "E_Name": "United Overseas Bank (Thai)" },
+    { "BankCode": "025", "T_Name": "ธนาคารกรุงศรีอยุธยา", "E_Name": "Bank of Ayudhya" },
+    { "BankCode": "030", "T_Name": "ธนาคารออมสิน", "E_Name": "Government Savings Bank" },
+    { "BankCode": "033", "T_Name": "ธนาคารอาคารสงเคราะห์", "E_Name": "Government Housing Bank" },
+    { "BankCode": "034", "T_Name": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร", "E_Name": "Bank for Agriculture and Agricultural Cooperatives" },
+    { "BankCode": "067", "T_Name": "ธนาคารทิสโก้", "E_Name": "TISCO Bank" },
+    { "BankCode": "069", "T_Name": "ธนาคารเกียรตินาคินภัทร", "E_Name": "Kiatnakin Phatra Bank" },
+    { "BankCode": "073", "T_Name": "ธนาคารแลนด์ แอนด์ เฮ้าส์", "E_Name": "Land and Houses Bank" }
+]

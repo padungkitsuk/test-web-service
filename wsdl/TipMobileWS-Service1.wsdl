@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    MOCK of Dhipaya's TipMobileWS/Service1.svc (non-motor SOAP service).
+
+    The real WSDL was not available (apidev.tipinsure.com is IP-restricted), so
+    every type below is reverse-engineered from how TipFlashClaim reads the
+    responses (plugins/Soap/.../SoapCustomerRequestsComponent.php and its
+    callers). Field names match what the app reads; fields the app never reads
+    may differ from the real service. Replace with the real ?singleWsdl when it
+    becomes available.
+
+    __LOCATION__ is replaced by router.php with this server's own URL.
+    Created: 2026-10-12.
+-->
+<wsdl:definitions name="Service1"
+                  targetNamespace="http://tempuri.org/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:tns="http://tempuri.org/">
+    <wsdl:types>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+
+            <!-- ===== Shared input types ===== -->
+            <xs:complexType name="LocationInput">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Lang" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ProvinceId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="AmphurId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="DistrictId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BankInput">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!-- ===== Province / Amphur / District / ZipCode ===== -->
+            <xs:complexType name="Province">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ProvinceId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ProvinceName" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ArrayOfProvince">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="ProvinceList" type="tns:Province"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ProvinceResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResultCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="data" nillable="true" type="tns:ArrayOfProvince"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="Amphur">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="AmphurId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="AmphurName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ProvinceId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ArrayOfAmphur">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="AmphurList" type="tns:Amphur"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AmphurResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResultCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="data" nillable="true" type="tns:ArrayOfAmphur"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="District">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="DistrictId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="DistrictName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="DistrictZipCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="AmphurId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ArrayOfDistrict">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="DistrictList" type="tns:District"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DistrictResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResultCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="data" nillable="true" type="tns:ArrayOfDistrict"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!-- GetZipCode: no caller in TipFlashClaim reads it — shape is a guess. -->
+            <xs:complexType name="ZipCode">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="DistrictName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="AmphurName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ProvinceName" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ArrayOfZipCode">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="ZipCodeList" type="tns:ZipCode"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ZipCodeResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResultCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="data" nillable="true" type="tns:ArrayOfZipCode"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!-- ===== Bank / BankBranch ===== -->
+            <xs:complexType name="Bank">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="T_Name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="E_Name" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ArrayOfBank">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Bank" type="tns:Bank"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BankListResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResultCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="data" nillable="true" type="tns:ArrayOfBank"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="BankBranch">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="BankBranchCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="T_Name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="E_Name" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ArrayOfBankBranch">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="BankBranch" type="tns:BankBranch"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BankBranchListResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResultCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="data" nillable="true" type="tns:ArrayOfBankBranch"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!-- ===== Claim OTP ===== -->
+            <xs:complexType name="OTPDetail">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ClaimNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="MobileNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="OTP" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ExpireDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ClaimOTPData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="OTPDetail" nillable="true" type="tns:OTPDetail"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ClaimOTPResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResultCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Data" nillable="true" type="tns:ClaimOTPData"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!-- ===== Address CIS ===== -->
+            <xs:complexType name="AddressCIS">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="EntityID" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="EntityType" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="T_FirstName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="T_LastName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="FullAddress" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="BRCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ArrayOfAddressCIS">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="AddressCIS" type="tns:AddressCIS"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AddressCISResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResultCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="data" nillable="true" type="tns:ArrayOfAddressCIS"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!-- ===== Request / response wrapper elements (document/literal wrapped) ===== -->
+            <xs:element name="GetPolicyNonMotor">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="policyNo" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="firstname" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="lastname" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="idCardNo" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetPolicyNonMotorResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <!-- A JSON string: {"ResultCode":"00","ResultDescription":"...","Data":[...]} -->
+                        <xs:element minOccurs="0" name="GetPolicyNonMotorResult" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="GetProvinceData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="input" nillable="true" type="tns:LocationInput"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetProvinceDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetProvinceDataResult" nillable="true" type="tns:ProvinceResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="GetAmphurData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="input" nillable="true" type="tns:LocationInput"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetAmphurDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetAmphurDataResult" nillable="true" type="tns:AmphurResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="GetDistrictData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="input" nillable="true" type="tns:LocationInput"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetDistrictDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetDistrictDataResult" nillable="true" type="tns:DistrictResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="GetZipCode">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="input" nillable="true" type="tns:LocationInput"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetZipCodeResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetZipCodeResult" nillable="true" type="tns:ZipCodeResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="GetBankList">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetBankListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetBankListResult" nillable="true" type="tns:BankListResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="GetBankBranchList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="input" nillable="true" type="tns:BankInput"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetBankBranchListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetBankBranchListResult" nillable="true" type="tns:BankBranchListResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="GetClaimNonMotor">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="ClaimNo" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetClaimNonMotorResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <!-- A JSON string: {"ResultCode":"00","ResultDescription":"...","Data":[{"ClaimNo":"...","Status":"..."}]} -->
+                        <xs:element minOccurs="0" name="GetClaimNonMotorResult" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="GetClaimOTPDetail">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="ClaimNo" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetClaimOTPDetailResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetClaimOTPDetailResult" nillable="true" type="tns:ClaimOTPResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="GetAddressCIS">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="OrganizationName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Branch" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="EntityType" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetAddressCISResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetAddressCISResult" nillable="true" type="tns:AddressCISResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <!-- GetClaim: no caller in TipFlashClaim reads it — shape is a guess. -->
+            <xs:element name="GetClaim">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="ClaimNo" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="PolicyNo" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetClaimResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetClaimResult" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+
+    <!-- ===== Messages ===== -->
+    <wsdl:message name="IService1_GetPolicyNonMotor_InputMessage"><wsdl:part name="parameters" element="tns:GetPolicyNonMotor"/></wsdl:message>
+    <wsdl:message name="IService1_GetPolicyNonMotor_OutputMessage"><wsdl:part name="parameters" element="tns:GetPolicyNonMotorResponse"/></wsdl:message>
+    <wsdl:message name="IService1_GetProvinceData_InputMessage"><wsdl:part name="parameters" element="tns:GetProvinceData"/></wsdl:message>
+    <wsdl:message name="IService1_GetProvinceData_OutputMessage"><wsdl:part name="parameters" element="tns:GetProvinceDataResponse"/></wsdl:message>
+    <wsdl:message name="IService1_GetAmphurData_InputMessage"><wsdl:part name="parameters" element="tns:GetAmphurData"/></wsdl:message>
+    <wsdl:message name="IService1_GetAmphurData_OutputMessage"><wsdl:part name="parameters" element="tns:GetAmphurDataResponse"/></wsdl:message>
+    <wsdl:message name="IService1_GetDistrictData_InputMessage"><wsdl:part name="parameters" element="tns:GetDistrictData"/></wsdl:message>
+    <wsdl:message name="IService1_GetDistrictData_OutputMessage"><wsdl:part name="parameters" element="tns:GetDistrictDataResponse"/></wsdl:message>
+    <wsdl:message name="IService1_GetZipCode_InputMessage"><wsdl:part name="parameters" element="tns:GetZipCode"/></wsdl:message>
+    <wsdl:message name="IService1_GetZipCode_OutputMessage"><wsdl:part name="parameters" element="tns:GetZipCodeResponse"/></wsdl:message>
+    <wsdl:message name="IService1_GetBankList_InputMessage"><wsdl:part name="parameters" element="tns:GetBankList"/></wsdl:message>
+    <wsdl:message name="IService1_GetBankList_OutputMessage"><wsdl:part name="parameters" element="tns:GetBankListResponse"/></wsdl:message>
+    <wsdl:message name="IService1_GetBankBranchList_InputMessage"><wsdl:part name="parameters" element="tns:GetBankBranchList"/></wsdl:message>
+    <wsdl:message name="IService1_GetBankBranchList_OutputMessage"><wsdl:part name="parameters" element="tns:GetBankBranchListResponse"/></wsdl:message>
+    <wsdl:message name="IService1_GetClaimNonMotor_InputMessage"><wsdl:part name="parameters" element="tns:GetClaimNonMotor"/></wsdl:message>
+    <wsdl:message name="IService1_GetClaimNonMotor_OutputMessage"><wsdl:part name="parameters" element="tns:GetClaimNonMotorResponse"/></wsdl:message>
+    <wsdl:message name="IService1_GetClaimOTPDetail_InputMessage"><wsdl:part name="parameters" element="tns:GetClaimOTPDetail"/></wsdl:message>
+    <wsdl:message name="IService1_GetClaimOTPDetail_OutputMessage"><wsdl:part name="parameters" element="tns:GetClaimOTPDetailResponse"/></wsdl:message>
+    <wsdl:message name="IService1_GetAddressCIS_InputMessage"><wsdl:part name="parameters" element="tns:GetAddressCIS"/></wsdl:message>
+    <wsdl:message name="IService1_GetAddressCIS_OutputMessage"><wsdl:part name="parameters" element="tns:GetAddressCISResponse"/></wsdl:message>
+    <wsdl:message name="IService1_GetClaim_InputMessage"><wsdl:part name="parameters" element="tns:GetClaim"/></wsdl:message>
+    <wsdl:message name="IService1_GetClaim_OutputMessage"><wsdl:part name="parameters" element="tns:GetClaimResponse"/></wsdl:message>
+
+    <!-- ===== Port type ===== -->
+    <wsdl:portType name="IService1">
+        <wsdl:operation name="GetPolicyNonMotor">
+            <wsdl:input message="tns:IService1_GetPolicyNonMotor_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetPolicyNonMotor_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetProvinceData">
+            <wsdl:input message="tns:IService1_GetProvinceData_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetProvinceData_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetAmphurData">
+            <wsdl:input message="tns:IService1_GetAmphurData_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetAmphurData_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetDistrictData">
+            <wsdl:input message="tns:IService1_GetDistrictData_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetDistrictData_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetZipCode">
+            <wsdl:input message="tns:IService1_GetZipCode_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetZipCode_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBankList">
+            <wsdl:input message="tns:IService1_GetBankList_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetBankList_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBankBranchList">
+            <wsdl:input message="tns:IService1_GetBankBranchList_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetBankBranchList_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetClaimNonMotor">
+            <wsdl:input message="tns:IService1_GetClaimNonMotor_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetClaimNonMotor_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetClaimOTPDetail">
+            <wsdl:input message="tns:IService1_GetClaimOTPDetail_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetClaimOTPDetail_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetAddressCIS">
+            <wsdl:input message="tns:IService1_GetAddressCIS_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetAddressCIS_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetClaim">
+            <wsdl:input message="tns:IService1_GetClaim_InputMessage"/>
+            <wsdl:output message="tns:IService1_GetClaim_OutputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- ===== Binding (SOAP 1.1, document/literal — like WCF basicHttpBinding) ===== -->
+    <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetPolicyNonMotor">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetPolicyNonMotor" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProvinceData">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetProvinceData" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAmphurData">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetAmphurData" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDistrictData">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetDistrictData" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetZipCode">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetZipCode" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBankList">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetBankList" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBankBranchList">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetBankBranchList" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetClaimNonMotor">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetClaimNonMotor" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetClaimOTPDetail">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetClaimOTPDetail" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAddressCIS">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetAddressCIS" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetClaim">
+            <soap:operation soapAction="http://tempuri.org/IService1/GetClaim" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="Service1">
+        <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+            <soap:address location="__LOCATION__"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
